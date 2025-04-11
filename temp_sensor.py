@@ -16,8 +16,7 @@ key_path = config["aws_iot_temp_sensor"]["key_path"]
 root_ca = config["aws_iot_temp_sensor"]["root_ca"]
 
 def gen_temperature():
-    return round(random.uniform(15.0, 23.0), 1)
-
+    return round(random.uniform(15.0, 21.0), 1)
 
 def main():
     mqtt_connection = mqtt_connection_builder.mtls_from_path(
@@ -36,7 +35,7 @@ def main():
     connect_future.result()
     print("[Sensor] Connected!")
 
-    for i in range(10):
+    for i in range(30):
         temperature = gen_temperature()
         payload = { "temperature": temperature }
         print(f"[Sensor] Publishing: {payload}")
